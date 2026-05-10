@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  assistant:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      # Persist Google OAuth token across restarts
+      - ./config/google_token.json:/app/config/google_token.json
+    environment:
+      - PYTHONUNBUFFERED=1
